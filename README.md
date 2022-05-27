@@ -9,6 +9,8 @@ Website: [CS61A Summer 2018](https://inst.eecs.berkeley.edu/~cs61a/su18/)
 3. Control
 4. Environment Diagrams
 
+Assignments: lab00,disc00,lab01,disc01,hw01,guerrilla01
+
 ## Week 2: Functions
 
 1. Higher Order Functions
