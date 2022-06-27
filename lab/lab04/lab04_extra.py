@@ -11,7 +11,9 @@ def map(fn, lst):
     [25, 1, 4, 0]
     """
     "*** YOUR CODE HERE ***"
-
+    #mutate - change state
+    for i in range(0, len(lst)):
+        lst[i] = fn(lst[i])
 # Q6
 def pascal(row, column):
     """Returns a number corresponding to the value at that location
@@ -25,6 +27,13 @@ def pascal(row, column):
     """
 
     "*** YOUR CODE HERE ***"
+    #base case
+    if(row==0):
+        if (column==0):
+            return 1
+        return 0
+    # recursive cases
+    return pascal(row-1,column)+pascal(row-1,column-1)
 
 # Q7
 def insert_into_all(item, nested_list):
@@ -37,6 +46,9 @@ def insert_into_all(item, nested_list):
     [[0], [0, 1, 2], [0, 3]]
     """
     "*** YOUR CODE HERE ***"
+    return [i.insert(0, item) for i in nested_list]
+
+        
 
 def subseqs(s):
     """Assuming that S is a list, return a nested list of all subsequences
@@ -49,6 +61,11 @@ def subseqs(s):
     [[]]
     """
     "*** YOUR CODE HERE ***"
+    if(s==[]):
+        return [[]]
+    else:
+        subset = subseqs(s[1:])
+        return subset+insert_into_all(s[0],subset)
 
 # Q8
 def merge(lst1, lst2):
@@ -64,7 +81,14 @@ def merge(lst1, lst2):
     [2, 4, 5, 6, 7]
     """
     "*** YOUR CODE HERE ***"
-
+    if(lst1==[]):
+        return lst2 
+    elif(lst2==[]):
+        return lst1
+    elif(lst1[0]<lst2[0]):
+        return [lst1[0]]+merge(lst1[1:],lst2)
+    else:
+        return [lst2[0]]+merge(lst1,lst2[1:])
 # Q9
 def mergesort(seq):
     """Mergesort algorithm.

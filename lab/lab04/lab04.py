@@ -16,6 +16,11 @@ def distance(city1, city2):
     5.0
     """
     "*** YOUR CODE HERE ***"
+    x1 = get_lat(city1)
+    x2 = get_lat(city2)
+    y1 = get_lon(city1)
+    y2 = get_lon(city2)
+    return sqrt((x1 - x2)**2 + (y1 - y2)**2)
 
 # Q3
 def closer_city(lat, lon, city1, city2):
@@ -33,13 +38,18 @@ def closer_city(lat, lon, city1, city2):
     'Bucharest'
     """
     "*** YOUR CODE HERE ***"
+    given_city = make_city("Some random name",lat,lon)
+    if(distance(given_city,city1)<distance(given_city,city2)):
+        return get_name(city1)
+    else:
+        return get_name(city2)
 
 # Q4
 # This is another implementation of the City ADT. Make sure
 # your code works for both the previous and the following versions
 # of the constructor and selectors!
 #
-# make_city = lambda name, lat, lon: { 'name': name, 'lat': lat, 'lon': lon }
-# get_name = lambda city: city['name']
-# get_lat = lambda city: city['lat']
-# get_lon = lambda city: city['lon']
+make_city = lambda name, lat, lon: { 'name': name, 'lat': lat, 'lon': lon }
+get_name = lambda city: city['name']
+get_lat = lambda city: city['lat']
+get_lon = lambda city: city['lon']
