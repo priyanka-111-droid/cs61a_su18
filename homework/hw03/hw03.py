@@ -1,3 +1,8 @@
+from contextlib import nullcontext
+from shutil import move
+from traceback import print_stack
+
+
 HW_SOURCE_FILE = 'hw03.py'
 
 #############
@@ -88,7 +93,38 @@ def pingpong(n):
     True
     """
     "*** YOUR CODE HERE ***"
-   
+    #ITERATIVE:
+    # index = direction = k=1
+    # while(index<n):
+    #     if(has_seven(index) or index%7==0):
+    #         direction = -direction
+    #     k = k+direction
+    #     index+=1
+    # return k
+
+    #RECURSIVE - WRONG CODE
+    # def func(index,k):
+    #     if(index==n):
+    #         return k 
+    #     if(has_seven(index) or index%7==0):
+    #         return func( index+1,k-1)
+    #     else:
+    #         return func( index+1,k+1)
+    # return func(1,1)
+
+
+    # RECURSIVE - CORRECT CODE
+    def func(index,direction,k):
+        if(index==n):
+            return k 
+        if(has_seven(index) or index%7==0):
+            return func( index+1,-direction,k-direction)
+        else:
+            return func( index+1,direction,k+direction)
+    return func(1,1,1)
+
+
+
 
 
 
@@ -116,6 +152,7 @@ def has_seven(k):
         return has_seven(k // 10)
 
 # Q3
+
 def count_change(amount):
     """Return the number of ways to make change for amount.
 
@@ -132,6 +169,32 @@ def count_change(amount):
     True
     """
     "*** YOUR CODE HERE ***"
+    
+
+    def starting_value_of_m(n):
+        '''return the starting highest value of m that is a power of 2 and less than n'''
+        # i = 0
+        # while(pow(2,i)<n): # keep looping only is less than n
+        #     i+=1
+        # return pow(2,i-1)
+        def start(i):
+            if(pow(2,i)>=n): # When power of 2 is greater than or equal to n,return it.
+                return pow(2,i-1)
+            return start(i+1)
+        return start(0)
+
+    def func(n,m):
+        '''Based on count_partitions problem.'''
+        if(n<0):
+            return 0
+        elif(n==0):
+            return 1
+        elif(m==0):
+            return 0
+        else:
+            return func(n-m,m)+ func(n,m//2)
+
+    return func(amount,starting_value_of_m(amount))
 
 # Q4
 def print_move(origin, destination):
@@ -167,6 +230,16 @@ def move_stack(n, start, end):
     """
     assert 1 <= start <= 3 and 1 <= end <= 3 and start != end, "Bad start/end"
     "*** YOUR CODE HERE ***"
+    if n == 1:
+        print_move(start, end)
+        return
+    
+
+    else:
+        median = 6 - start - end
+        move_stack(n-1,start,median)
+        move_stack(1,start,end)
+        move_stack(n-1,median,end)
 
 # Q5
 def replace_leaf(t, old, new):
@@ -199,6 +272,16 @@ def replace_leaf(t, old, new):
     True
     """
     "*** YOUR CODE HERE ***"
+    if(is_leaf(t)):
+        if(label(t)==old):
+            return tree(new)
+        else:
+            return tree(label(t))
+    replaced_branches=[]
+    for b in branches(t):
+        replaced_branches+=[replace_leaf(b,old,new)]
+    return tree(label(t),replaced_branches)
+
 
 # Tree ADT
 def tree(label, branches=[]):
