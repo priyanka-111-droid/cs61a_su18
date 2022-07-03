@@ -2,12 +2,17 @@
 
 ; Q4
 (define (composed f g)
-  'YOUR-CODE-HERE
+  (
+    lambda (x) (f (g x) )
+  )
 )
 
 ; Q5
 (define (intersect f1 f2)
-  'YOUR-CODE-HERE
+  (
+    lambda (x) 
+      (= (f1 x) (f2 x) )
+  )
 )
 
 ;;; Tests
@@ -26,7 +31,10 @@
 (define (max a b) (if (> a b) a b))
 (define (min a b) (if (> a b) b a))
 (define (gcd a b)
-  'YOUR-CODE-HERE
+  (
+    cond[(= b 0) a]
+    [else ( gcd b (modulo a b))]
+  )
 )
 
 ;;; Tests

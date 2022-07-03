@@ -7,65 +7,58 @@ test = {
         {
           'code': r"""
           scm> ((composed add-one add-one) 2)
-          f2991d685f624ad59b79213e20800653
-          # locked
+          4
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
           scm> ((composed multiply-by-two multiply-by-two) 2)
-          2ce69256b3a4325ad04f8cf5c5dd6244
-          # locked
+          8
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
           scm> ((composed add-one multiply-by-two) 2)
-          b93035e430af620ab1eedc5adaea0a82
-          # locked
+          5
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
           scm> ((composed multiply-by-two add-one) 2)
-          5c5050141c04dffb4cedd647366d0e59
-          # locked
+          6
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
           scm> ((composed (composed add-one add-one) add-one) 2)
-          b93035e430af620ab1eedc5adaea0a82
-          # locked
+          5
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
           scm> ((composed (composed add-one add-one) multiply-by-two) 2)
-          5c5050141c04dffb4cedd647366d0e59
-          # locked
+          6
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
           scm> ((composed multiply-by-two (composed add-one add-one)) 2)
-          2ce69256b3a4325ad04f8cf5c5dd6244
-          # locked
+          8
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         }
       ],
       'scored': False,
