@@ -23,6 +23,12 @@ class Card(object):
         500
         """
         "*** YOUR CODE HERE ***"
+        # rhs - arguments taken in by constructor
+        # lhs - instance attributes of Card instance to keep track of these arguments.
+        self.name = name
+        self.attack = attack
+        self.defense = defense
+
 
     def power(self, other_card):
         """
@@ -42,6 +48,7 @@ class Card(object):
         50.0
         """
         "*** YOUR CODE HERE ***"
+        return self.attack - other_card.defense/2
 
 
     def effect(self, other_card, player, opponent):
@@ -82,6 +89,10 @@ class Player(object):
         self.deck = deck
         self.name = name
         "*** YOUR CODE HERE ***"
+        self.hand = []
+        for card in range(5):
+            self.hand.append(self.deck.draw())
+        
 
     def draw(self):
         """Draw a card from the player's deck and add it to their hand.
@@ -97,6 +108,7 @@ class Player(object):
         """
         assert not self.deck.is_empty(), 'Deck is empty!'
         "*** YOUR CODE HERE ***"
+        self.hand.append(self.deck.draw())
 
     def play(self, card_index):
         """Remove and return a card from the player's hand at the given index.
@@ -112,6 +124,7 @@ class Player(object):
         2
         """
         "*** YOUR CODE HERE ***"
+        return self.hand.pop(card_index)
 
 
     def display_hand(self):
