@@ -1,5 +1,8 @@
 # cs61a_su18
 
+Introduction to programming paradigms,such as functional programming and OOP 
+using Python and Scheme.
+
 Website: [CS61A Summer 2018](https://inst.eecs.berkeley.edu/~cs61a/su18/)
 
 ## Week 1: Introduction
